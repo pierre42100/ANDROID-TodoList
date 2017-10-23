@@ -3,7 +3,7 @@ package org.communiquons.android.todolist;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class CreateTask extends AppCompatActivity {
+public class CreateTaskActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

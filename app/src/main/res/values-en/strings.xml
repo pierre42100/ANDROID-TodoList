@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TodoList</string>
     <string name="btn_create_task">Create Task</string>
     <string name="create_task_form_label">Create a task</string>
     <string name="create_task_input_placeholder">Task name</string>
-    <string name="create_task_submit">Create task</string>
+    <string name="create_task_submit">Create Task</string>
 </resources>
