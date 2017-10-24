@@ -5,4 +5,5 @@
     <string name="create_task_form_label">Create a task</string>
     <string name="create_task_input_placeholder">Task name</string>
     <string name="create_task_submit">Create Task</string>
+    <string name="alt_img_delete">Delete</string>
 </resources>

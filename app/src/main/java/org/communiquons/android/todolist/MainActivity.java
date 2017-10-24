@@ -1,12 +1,12 @@
 package org.communiquons.android.todolist;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     void refresh_tasks_list(){
 
         //DEVELOPEMENT STAGE
-        //Task are hard-coded, but it is temporary
+        //Tasks are hard-coded, but it is temporary
         ArrayList<Task> tasksList = new ArrayList<>();
 
         //Define arbitrary tasks
@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         tasksList.add(new Task("Set the table", true));
         tasksList.add(new Task("Call grand-father", true));
         tasksList.add(new Task("Call uncle", false));
+        tasksList.add(new Task("Eat chocolate", false));
 
         TasksAdapter tasksAdapter = new TasksAdapter(this, tasksList);
 
@@ -63,4 +64,6 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(tasksAdapter);
 
     }
+
+
 }

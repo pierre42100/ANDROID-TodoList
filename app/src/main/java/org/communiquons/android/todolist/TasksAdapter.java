@@ -53,9 +53,6 @@ public class TasksAdapter extends ArrayAdapter<Task> {
         //Set the checkbox as checked or not, depending of the current state
         task_checkbox.setChecked(current_task.is_done());
 
-        //Name of the task
-        //TextView task_name = (TextView) listItemView.findViewById(R.id.task_name);
-
         //Get name of the task
         task_checkbox.setText(current_task.getName());
 
