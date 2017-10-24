@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,10 +47,20 @@ public class MainActivity extends AppCompatActivity {
      */
     void refresh_tasks_list(){
 
-        //Debug
-        //utils.file_put_contents("test.txt", "This is a test content.");
-        String fileContent = utils.file_get_contents("test.txt");
-        Toast.makeText(getApplicationContext(), "FileContent: "+fileContent, Toast.LENGTH_LONG).show();
+        //DEVELOPEMENT STAGE
+        //Task are hard-coded, but it is temporary
+        ArrayList<Task> tasksList = new ArrayList<>();
+
+        //Define arbitrary tasks
+        tasksList.add(new Task("Clean the table", false));
+        tasksList.add(new Task("Set the table", true));
+        tasksList.add(new Task("Call grand-father", true));
+        tasksList.add(new Task("Call uncle", false));
+
+        TasksAdapter tasksAdapter = new TasksAdapter(this, tasksList);
+
+        ListView listView = (ListView) findViewById(R.id.tasks_list);
+        listView.setAdapter(tasksAdapter);
 
     }
 }
