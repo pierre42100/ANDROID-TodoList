@@ -3,6 +3,7 @@ package org.communiquons.android.todolist;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     void refresh_tasks_list(){
 
         //Get the tasks list
-        tmanag.get_all();
+        Log.v("MainActivity Debug", tmanag.get_all().toString());
 
         //DEVELOPEMENT STAGE
         //Tasks are hard-coded, but it is temporary
