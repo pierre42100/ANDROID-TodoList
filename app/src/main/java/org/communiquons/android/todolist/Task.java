@@ -52,7 +52,7 @@ class Task {
     /**
      * Get the number of the task
      */
-    int task_number(){
+    int get_number(){
         return task_number;
     }
 }

@@ -7,4 +7,5 @@
     <string name="alt_img_delete">Delete</string>
     <string name="err_task_name_too_short">Task name too short!</string>
     <string name="err_task_creation">Couldn\'t create task! Please try again…</string>
+    <string name="no_task_yet_msg">You do not have any task yet.</string>
 </resources>

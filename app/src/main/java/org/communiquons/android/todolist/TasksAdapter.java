@@ -1,12 +1,15 @@
 package org.communiquons.android.todolist;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -16,12 +19,12 @@ import java.util.ArrayList;
  * Created by pierre on 10/24/17.
  */
 
-public class TasksAdapter extends ArrayAdapter<Task> {
+class TasksAdapter extends ArrayAdapter<Task> {
 
     /**
      * Class constructor
      */
-    public TasksAdapter(Activity context, ArrayList<Task> tasks){
+    TasksAdapter(Activity context, ArrayList<Task> tasks){
         //Initializate the TaskAdapter
         super(context, 0, tasks);
     }
@@ -56,9 +59,12 @@ public class TasksAdapter extends ArrayAdapter<Task> {
         //Get name of the task
         task_checkbox.setText(current_task.getName());
 
+        //Set task ID
+        TextView task_id_elem = listItemView.findViewById(R.id.task_id);
+        String task_id = current_task.get_number()+"";
+        task_id_elem.setText(task_id);
+
         //Return result
         return listItemView;
     }
-
-
 }

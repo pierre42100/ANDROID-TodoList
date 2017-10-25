@@ -19,4 +19,13 @@
         android:layout_alignParentBottom="true"
         />
 
+    <!-- No tasks yet -->
+    <TextView
+        android:id="@+id/not_task_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_task_yet_msg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"/>
+
 </RelativeLayout>

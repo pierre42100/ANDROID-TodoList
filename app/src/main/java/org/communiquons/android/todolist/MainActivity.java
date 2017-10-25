@@ -6,11 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -21,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
      */
     TasksManagement tmanag;
 
+    /**
+     * Not task message
+     */
+    TextView noTaskMsg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
         //Set the view
         setContentView(R.layout.activity_main);
+
+        //Get no task message
+        noTaskMsg = (TextView) findViewById(R.id.not_task_msg);
 
         //Make the create a task button lives
         Button btn_create_task = (Button) findViewById(R.id.btn_create_task);
@@ -80,6 +91,14 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        //Check the tasks list length
+        //If the list is empty, show the "no task" message
+        if(tasks_list.length() == 0){
+            noTaskMsg.setVisibility(View.VISIBLE);
+        }
+        else
+            noTaskMsg.setVisibility(View.INVISIBLE);
+
 
         TasksAdapter tasksAdapter = new TasksAdapter(this, tasksList);
 
@@ -88,5 +107,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Handles task deletion
+     *
+     * @param view the view that was clicked
+     */
+    public void delete_task(View view){
+        //Get the ID of the task to delete
+        LinearLayout task_parent = (LinearLayout) view.getParent();
+        TextView id_container = (TextView) task_parent.getChildAt(2);
+        int task_id = Integer.decode(id_container.getText() + "");
 
+
+    }
 }
