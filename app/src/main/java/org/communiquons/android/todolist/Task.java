@@ -8,7 +8,10 @@ package org.communiquons.android.todolist;
  * Created by pierre on 10/24/17.
  */
 
-public class Task {
+class Task {
+
+    //Number of the task
+    private int task_number;
 
     //Name of the task
     private String task_name;
@@ -19,12 +22,14 @@ public class Task {
     /**
      * Create a new task
      *
+     * @param num is the number of the task
      * @param name is the name of the task
      * @param done specify wether the task is done or not
      */
-    public Task(String name, boolean done){
+    Task(int num, String name, boolean done){
 
         //Save the values
+        task_number = num;
         task_name = name;
         task_done = done;
 
@@ -40,7 +45,14 @@ public class Task {
     /**
      * Get the status of the task (check if the task is done or not)
      */
-    public boolean is_done(){
+    boolean is_done(){
         return task_done;
+    }
+
+    /**
+     * Get the number of the task
+     */
+    int task_number(){
+        return task_number;
     }
 }

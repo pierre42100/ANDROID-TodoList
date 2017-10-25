@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,18 +53,33 @@ public class MainActivity extends AppCompatActivity {
     void refresh_tasks_list(){
 
         //Get the tasks list
-        Log.v("MainActivity Debug", tmanag.get_all().toString());
+        JSONArray tasks_list =  tmanag.get_all();
 
-        //DEVELOPEMENT STAGE
-        //Tasks are hard-coded, but it is temporary
+        //Create an array list
         ArrayList<Task> tasksList = new ArrayList<>();
 
-        //Define arbitrary tasks
-        tasksList.add(new Task("Clean the table", false));
-        tasksList.add(new Task("Set the table", true));
-        tasksList.add(new Task("Call grand-father", true));
-        tasksList.add(new Task("Call uncle", false));
-        tasksList.add(new Task("Eat chocolate", false));
+        //Process the list of tasks
+        for(int i = 0; i < tasks_list.length(); i++){
+
+            try {
+                //Retrieve task informations
+                JSONObject task_infos = tasks_list.getJSONObject(i);
+
+                //Extract informations about the task
+                String task_name = task_infos.getString("name");
+                boolean task_done = task_infos.getBoolean("done");
+
+                //Add the task to the list
+                tasksList.add(new Task(i, task_name, task_done));
+
+            } catch (JSONException e){
+                //Display error stack trace
+                e.printStackTrace();
+            }
+
+
+        }
+
 
         TasksAdapter tasksAdapter = new TasksAdapter(this, tasksList);
 
