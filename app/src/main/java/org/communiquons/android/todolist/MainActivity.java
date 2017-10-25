@@ -12,16 +12,16 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     /**
-     * Utilities variable
+     * Tasks management object
      */
-    Utilities utils;
+    TasksManagement tmanag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Enable utilities
-        utils = new Utilities(getApplicationContext());
+        //Create task management object
+        tmanag = new TasksManagement(getApplicationContext());
 
         //Set the view
         setContentView(R.layout.activity_main);
@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
      * Refresh the list of tasks
      */
     void refresh_tasks_list(){
+
+        //Get the tasks list
+        tmanag.get_all();
 
         //DEVELOPEMENT STAGE
         //Tasks are hard-coded, but it is temporary

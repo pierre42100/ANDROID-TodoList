@@ -11,7 +11,7 @@ import java.io.FileOutputStream;
  *
  * Created by pierre on 10/24/17.
  */
-public class Utilities {
+class Utilities {
 
     /**
      * The application context
@@ -95,6 +95,31 @@ public class Utilities {
         //This is a success
         return true;
 
+    }
+
+    /**
+     * Check where a file exists or not
+     *
+     * @param filename The name of the file to check
+     * @return True if the file exists, false else
+     */
+    public boolean file_exists(String filename){
+        //Try to open file
+        FileInputStream fileInputStream;
+
+        try{
+            fileInputStream = appContext.openFileInput(filename);
+            fileInputStream.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+
+            //It seems that the file does not exists
+            return false;
+        }
+
+        //The file exists
+        return true;
     }
 
 }
