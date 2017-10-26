@@ -43,4 +43,13 @@ class Task {
     boolean is_done(){
         return task_done;
     }
+
+    /**
+     * Mark the task as done or not done
+     *
+     * @param status The new status for the task
+     */
+    void set_done(boolean status){
+        task_done = status;
+    }
 }

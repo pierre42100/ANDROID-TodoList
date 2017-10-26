@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -144,5 +145,28 @@ public class MainActivity extends AppCompatActivity {
         tasksAdapter.notifyDataSetChanged();
 
 
+    }
+
+    /**
+     * Handles task status change
+     *
+     * @param view the view to update
+     */
+    public void task_update_status(View view){
+
+        //Get the new status of the task
+        boolean new_status = ((CheckBox) view).isChecked();
+
+        //Get the ID of the task to update
+        LinearLayout task_view_parent = (LinearLayout) view.getParent();
+        int task_id = listView.indexOfChild(task_view_parent);
+        task_id += listView.getFirstVisiblePosition();
+
+        //Update the task in the storage
+        tmanag.update_task_status(task_id, new_status);
+
+        //Update the task in the task list
+        tasksList.get(task_id).set_done(new_status);
+        tasksAdapter.notifyDataSetChanged();
     }
 }

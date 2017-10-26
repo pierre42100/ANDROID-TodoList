@@ -171,6 +171,40 @@ class TasksManagement {
     }
 
     /**
+     * Update a task status specified by its ID
+     *
+     * @param task_id The ID of the task to update
+     * @param new_status The new status of the task
+     * @return False in case of failure
+     */
+    boolean update_task_status(int task_id, boolean new_status){
+
+        //Get the current list of tasks
+        JSONArray tasks_list = get_all();
+
+        //Try to perform operation
+        try {
+            //Get the current task
+            JSONObject new_task = tasks_list.getJSONObject(task_id);
+
+            new_task.put("done", new_status);
+
+            //Push new task to task list
+            tasks_list.put(task_id, new_task);
+
+        } catch (JSONException e){
+            e.printStackTrace();
+            return false;
+        }
+
+        //Save the new list of tasks
+        save_new_tasks_list(tasks_list);
+
+        //Success
+        return true;
+    }
+
+    /**
      * Reset tasks file to its default values
      */
     private void reset_tasks_file(){

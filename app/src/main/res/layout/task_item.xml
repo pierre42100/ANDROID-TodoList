@@ -10,7 +10,8 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         tools:text="TaskName"
-        android:layout_weight="10"/>
+        android:layout_weight="10"
+        android:onClick="task_update_status"/>
 
     <ImageView
         android:layout_width="50dp"
