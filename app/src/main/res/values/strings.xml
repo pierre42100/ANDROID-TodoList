@@ -12,4 +12,5 @@
     <string name="msg_confirm_delete_task">Do you really want to delete this task? It can be reverted !</string>
     <string name="btn_confirm_task_delete">Delete</string>
     <string name="btn_cancel_task_delete">Cancel</string>
+    <string name="title_activity_root">RootActivity</string>
 </resources>

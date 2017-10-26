@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +18,6 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         noTaskMsg = (TextView) findViewById(R.id.not_task_msg);
 
         //Make the create a task button lives
-        Button btn_create_task = (Button) findViewById(R.id.btn_create_task);
+        FloatingActionButton btn_create_task = (FloatingActionButton) findViewById(R.id.btn_create_task);
         btn_create_task.setOnClickListener(
                 new View.OnClickListener(){
                     @Override
