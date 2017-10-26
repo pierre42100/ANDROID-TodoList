@@ -10,9 +10,6 @@ package org.communiquons.android.todolist;
 
 class Task {
 
-    //Number of the task
-    private int task_number;
-
     //Name of the task
     private String task_name;
 
@@ -22,14 +19,12 @@ class Task {
     /**
      * Create a new task
      *
-     * @param num is the number of the task
      * @param name is the name of the task
      * @param done specify wether the task is done or not
      */
-    Task(int num, String name, boolean done){
+    Task(String name, boolean done){
 
         //Save the values
-        task_number = num;
         task_name = name;
         task_done = done;
 
@@ -47,12 +42,5 @@ class Task {
      */
     boolean is_done(){
         return task_done;
-    }
-
-    /**
-     * Get the number of the task
-     */
-    int get_number(){
-        return task_number;
     }
 }

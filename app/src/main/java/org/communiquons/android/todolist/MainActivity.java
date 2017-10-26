@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 boolean task_done = task_infos.getBoolean("done");
 
                 //Add the task to the list
-                tasksList.add(new Task(i, task_name, task_done));
+                tasksList.add(new Task(task_name, task_done));
 
             } catch (JSONException e){
                 //Display error stack trace
