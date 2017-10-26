@@ -1,5 +1,7 @@
 package org.communiquons.android.todolist;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -45,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
      * ListView containing the tasks
      */
     private ListView listView;
+
+    /**
+     * The ID of the last task to delete
+     */
+    int last_task_to_delete = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,18 +139,36 @@ public class MainActivity extends AppCompatActivity {
      * @param view the view that was clicked
      */
     public void delete_task(View view){
+
         //Get the ID of the task to delete
         LinearLayout task_view_parent = (LinearLayout) view.getParent();
-        int task_id = listView.indexOfChild(task_view_parent);
-        task_id += listView.getFirstVisiblePosition();
+        last_task_to_delete = listView.indexOfChild(task_view_parent);
+        last_task_to_delete += listView.getFirstVisiblePosition();
 
-        //Delete task in the storage
-        tmanag.delete_task(task_id);
+        //Create a confirmation dialog to delete task
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.msg_confirm_delete_task)
+                .setPositiveButton(R.string.btn_confirm_task_delete, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
-        //Remove the task from the list and inform tasksAdapter for the change
-        tasksList.remove(task_id);
-        tasksAdapter.notifyDataSetChanged();
+                        //Delete task in the storage
+                        tmanag.delete_task(last_task_to_delete);
 
+                        //Remove the task from the list and inform tasksAdapter for the change
+                        tasksList.remove(last_task_to_delete);
+                        tasksAdapter.notifyDataSetChanged();
+
+                    }
+                })
+                .setNegativeButton(R.string.btn_cancel_task_delete, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                        // = DO NOTHING
+                    }
+                });
+        // Create the AlertDialog object and display it
+        builder.create();
+        builder.show();
 
     }
 
