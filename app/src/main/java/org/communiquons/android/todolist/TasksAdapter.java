@@ -59,11 +59,6 @@ class TasksAdapter extends ArrayAdapter<Task> {
         //Get name of the task
         task_checkbox.setText(current_task.getName());
 
-        //Set task ID
-        TextView task_id_elem = listItemView.findViewById(R.id.task_id);
-        String task_id = current_task.get_number()+"";
-        task_id_elem.setText(task_id);
-
         //Return result
         return listItemView;
     }

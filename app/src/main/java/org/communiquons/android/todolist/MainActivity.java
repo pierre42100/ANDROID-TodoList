@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,6 +29,21 @@ public class MainActivity extends AppCompatActivity {
      * Not task message
      */
     TextView noTaskMsg;
+
+    /**
+     * Tasks list
+     */
+    private ArrayList<Task> tasksList;
+
+    /**
+     * Tasks adapter
+     */
+    private TasksAdapter tasksAdapter;
+
+    /**
+     * ListView containing the tasks
+     */
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         JSONArray tasks_list =  tmanag.get_all();
 
         //Create an array list
-        ArrayList<Task> tasksList = new ArrayList<>();
+        tasksList = new ArrayList<>();
 
         //Process the list of tasks
         for(int i = 0; i < tasks_list.length(); i++){
@@ -100,10 +116,12 @@ public class MainActivity extends AppCompatActivity {
             noTaskMsg.setVisibility(View.INVISIBLE);
 
 
-        TasksAdapter tasksAdapter = new TasksAdapter(this, tasksList);
+        tasksAdapter = new TasksAdapter(this, tasksList);
 
-        ListView listView = (ListView) findViewById(R.id.tasks_list);
+        listView = (ListView) findViewById(R.id.tasks_list);
         listView.setAdapter(tasksAdapter);
+
+
 
     }
 
@@ -114,9 +132,16 @@ public class MainActivity extends AppCompatActivity {
      */
     public void delete_task(View view){
         //Get the ID of the task to delete
-        LinearLayout task_parent = (LinearLayout) view.getParent();
-        TextView id_container = (TextView) task_parent.getChildAt(2);
-        int task_id = Integer.decode(id_container.getText() + "");
+        LinearLayout task_view_parent = (LinearLayout) view.getParent();
+        int task_id = listView.indexOfChild(task_view_parent);
+        task_id += listView.getFirstVisiblePosition();
+
+        //Delete task in the storage
+        tmanag.delete_task(task_id);
+
+        //Remove the task from the list and inform tasksAdapter for the change
+        tasksList.remove(task_id);
+        tasksAdapter.notifyDataSetChanged();
 
 
     }

@@ -2,11 +2,12 @@
 <resources>
     <string name="app_name">TodoList</string>
     <string name="btn_create_task">Create Task</string>
-    <string name="create_task_form_label">Create a task</string>
+    <string name="create_task_form_label">Task name</string>
     <string name="create_task_input_placeholder">Task name</string>
     <string name="create_task_submit">Create Task</string>
     <string name="alt_img_delete">Delete</string>
     <string name="err_task_name_too_short">Task name is too short !</string>
     <string name="err_task_creation">Couldn\'t create task! Please try again…</string>
     <string name="no_task_yet_msg">You do not have any task yet.</string>
+    <string name="activity_new_task_label">Create a new task</string>
 </resources>

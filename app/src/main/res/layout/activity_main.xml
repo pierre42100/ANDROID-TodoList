@@ -3,29 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <!-- ListView -->
-    <ListView
-        android:id="@+id/tasks_list"
+    <!-- Linear layout -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <!-- Add a task button -->
-    <Button
-        android:id="@+id/btn_create_task"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_create_task"
-        android:layout_alignParentBottom="true"
-        />
+        <!-- ListView -->
+        <ListView
+            android:id="@+id/tasks_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:numColumns="auto_fit"
+            android:orientation="vertical" />
 
-    <!-- No tasks yet -->
+        <!-- Add a task button -->
+        <Button
+            android:id="@+id/btn_create_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_create_task" />
+
+    </LinearLayout>
+
+    <!-- No tasks yet message -->
     <TextView
         android:id="@+id/not_task_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/no_task_yet_msg"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="50dp"
+        android:text="@string/no_task_yet_msg" />
 
 </RelativeLayout>

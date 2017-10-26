@@ -151,6 +151,26 @@ class TasksManagement {
     }
 
     /**
+     * Delete a task specified by its ID
+     *
+     * @param task_id The ID of the task to delete
+     * @return False in case of failure
+     */
+    boolean delete_task(int task_id){
+        //Get the current list of tasks
+        JSONArray tasks_list = get_all();
+
+        //Try to delete the task
+        tasks_list.remove(task_id);
+
+        //Save the new list of tasks
+        save_new_tasks_list(tasks_list);
+
+        //Success
+        return true;
+    }
+
+    /**
      * Reset tasks file to its default values
      */
     private void reset_tasks_file(){
