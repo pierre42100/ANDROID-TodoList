@@ -202,10 +202,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public void enter_task_creation(View view){
 
-        //Old version
-        /*Intent createTask = new Intent(view.getContext(), CreateTaskActivity.class);
-        startActivity(createTask);*/
-
         //New version
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         // Get the layout inflater

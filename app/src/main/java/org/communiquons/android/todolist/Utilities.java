@@ -5,6 +5,7 @@ import android.util.Log;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.UnsupportedEncodingException;
 
 /**
  * Application utilities
@@ -81,7 +82,7 @@ class Utilities {
         try {
             //Open the file
             fileStream = appContext.openFileOutput(filename, Context.MODE_PRIVATE);
-            fileStream.write(content.getBytes());
+            fileStream.write(content.getBytes("UTF-8"));
             fileStream.close();
         }
         catch (Exception e){
@@ -122,4 +123,27 @@ class Utilities {
         return true;
     }
 
+    /**
+     * Encode a string in UTF-8 or does not do anything in case of failure
+     *
+     * @param toconvert the string to convert
+     * @return The result
+     */
+    String encode_utf_8(String toconvert){
+
+        //Encode string into UTF-8
+        String encodedString;
+
+        try{
+            encodedString = new String(toconvert.getBytes(), "UTF-8");
+        }
+        catch(UnsupportedEncodingException e){
+            e.printStackTrace();
+            Log.e("UtilitiesIssue", "Couldn't convert string to UTF8 !");
+            return toconvert;
+        }
+
+        //Return result
+        return encodedString;
+    }
 }

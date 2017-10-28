@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">A faire</string>
+    <string name="activity_new_task_label">Créer une nouvelle tâche</string>
+    <string name="alt_img_delete">Supprimer</string>
+    <string name="btn_cancel_dialog_create_task">Annuler</string>
+    <string name="btn_cancel_task_delete">Annuler</string>
+    <string name="btn_confirm_task_delete">Supprimer</string>
+    <string name="btn_create_task">Créer la tâche</string>
+    <string name="create_task_form_label">Nom de la tâche</string>
+    <string name="create_task_input_placeholder">Nom de la tâche</string>
+    <string name="create_task_submit">Créer une tâche</string>
+    <string name="dialog_create_task_title">Créer une nouvelle tâche</string>
+    <string name="err_task_creation">Une erreur a survenue lors de la création de la tâche. Veuillez réessayer...</string>
+    <string name="err_task_name_too_short">Nom de la tâche</string>
+    <string name="no_task_yet_msg">Vous n\'avez aucune tâche pour le moment.</string>
+    <string name="msg_confirm_delete_task">Voulez-vous vraiment supprimer cette tâche ? L\'opération n\'est pas réversible !</string>
+</resources>
