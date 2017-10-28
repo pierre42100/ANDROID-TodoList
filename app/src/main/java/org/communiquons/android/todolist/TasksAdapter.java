@@ -22,11 +22,46 @@ import java.util.ArrayList;
 class TasksAdapter extends ArrayAdapter<Task> {
 
     /**
+     * Main activity object
+     */
+    MainActivity mainActivity;
+
+    /**
+     * Update status listener
+     */
+    View.OnClickListener uSatutsListener;
+
+    /**
+     * Delete task listener
+     */
+    View.OnLongClickListener dDaskListener;
+
+    /**
      * Class constructor
      */
     TasksAdapter(Activity context, ArrayList<Task> tasks){
         //Initializate the TaskAdapter
         super(context, 0, tasks);
+
+        //Create listeners
+        mainActivity = (MainActivity) context;
+
+        //Update status listener
+        uSatutsListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.task_update_status(v);
+            }
+        };
+
+        //Delete task listner
+        dDaskListener = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mainActivity.delete_task(v);
+                return false;
+            }
+        };
     }
 
     /**
@@ -58,6 +93,10 @@ class TasksAdapter extends ArrayAdapter<Task> {
 
         //Get name of the task
         task_checkbox.setText(current_task.getName());
+
+        //Make the checkbox lives
+        listItemView.findViewById(R.id.task_done_checkbox).setOnClickListener(uSatutsListener);
+        listItemView.findViewById(R.id.task_done_checkbox).setOnLongClickListener(dDaskListener);
 
         //Return result
         return listItemView;

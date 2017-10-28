@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
      */
     int last_task_to_delete = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < tasks_list.length(); i++){
 
             try {
-                //Retrieve task informations
+                //Retrieve task information
                 JSONObject task_infos = tasks_list.getJSONObject(i);
 
                 //Extract informations about the task
@@ -128,8 +129,6 @@ public class MainActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.tasks_list);
         listView.setAdapter(tasksAdapter);
-
-
 
     }
 

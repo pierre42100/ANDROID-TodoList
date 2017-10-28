@@ -10,14 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         tools:text="TaskName"
-        android:layout_weight="10"
-        android:onClick="task_update_status"/>
+        android:layout_weight="10" />
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="10dp"
-        android:src="@android:drawable/ic_menu_delete"
-        android:contentDescription="@string/alt_img_delete"
-        android:onClick="delete_task"/>
+
 </LinearLayout>
