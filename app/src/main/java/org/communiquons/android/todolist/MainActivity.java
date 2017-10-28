@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -73,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View view) {
-                        Intent createTask = new Intent(view.getContext(), CreateTaskActivity.class);
-                        startActivity(createTask);
+                        enter_task_creation(view);
                     }
                 }
         );
@@ -192,5 +193,59 @@ public class MainActivity extends AppCompatActivity {
         //Update the task in the task list
         tasksList.get(task_id).set_done(new_status);
         tasksAdapter.notifyDataSetChanged();
+    }
+
+    /**
+     * Handles tasks creation request
+     *
+     * @param view The view that performed the request
+     */
+    public void enter_task_creation(View view){
+
+        //Old version
+        /*Intent createTask = new Intent(view.getContext(), CreateTaskActivity.class);
+        startActivity(createTask);*/
+
+        //New version
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // Get the layout inflater
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.dialog_create_task, null);
+
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        builder.setTitle(R.string.dialog_create_task_title);
+        builder.setView(dialogView)
+                // Add action buttons
+                .setPositiveButton(R.string.btn_create_task, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        //Get the input
+                        EditText taskname =  dialogView.findViewById(R.id.new_task_name);
+                        String new_task_name =  ""+taskname.getText();
+
+                        //Check if the name is empty
+                        if(new_task_name.length() < 2){
+                            Toast.makeText(MainActivity.this, R.string.err_task_name_too_short,
+                                    Toast.LENGTH_SHORT).show();
+
+                            return;
+                        }
+
+                        //Else we can create the task
+                        tmanag.create_task(new_task_name);
+
+                        //Refresh list
+                        MainActivity.this.refresh_tasks_list();
+                    }
+                })
+                .setNegativeButton(R.string.btn_cancel_dialog_create_task, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        builder.create();
+        builder.show();
+
     }
 }
