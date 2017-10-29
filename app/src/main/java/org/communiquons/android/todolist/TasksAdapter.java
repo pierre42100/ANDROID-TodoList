@@ -1,15 +1,13 @@
 package org.communiquons.android.todolist;
 
 import android.app.Activity;
-import android.util.Log;
+import android.os.Build;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -24,17 +22,17 @@ class TasksAdapter extends ArrayAdapter<Task> {
     /**
      * Main activity object
      */
-    MainActivity mainActivity;
+    private MainActivity mainActivity;
 
     /**
      * Update status listener
      */
-    View.OnClickListener uSatutsListener;
+    private View.OnClickListener uStatusListener;
 
     /**
      * Delete task listener
      */
-    View.OnLongClickListener dDaskListener;
+    private View.OnLongClickListener dTaskListener;
 
     /**
      * Class constructor
@@ -47,7 +45,7 @@ class TasksAdapter extends ArrayAdapter<Task> {
         mainActivity = (MainActivity) context;
 
         //Update status listener
-        uSatutsListener = new View.OnClickListener() {
+        uStatusListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mainActivity.task_update_status(v);
@@ -55,7 +53,7 @@ class TasksAdapter extends ArrayAdapter<Task> {
         };
 
         //Delete task listner
-        dDaskListener = new View.OnLongClickListener() {
+        dTaskListener = new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 mainActivity.delete_task(v);
@@ -71,8 +69,9 @@ class TasksAdapter extends ArrayAdapter<Task> {
      * @param parent The parent ViewGroup that is used for inflation
      * @return The View for the position in the Adapter View
      */
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, @NonNull ViewGroup parent){
         //Check if the existing view can be reused or not
         View listItemView = convertView;
 
@@ -85,18 +84,38 @@ class TasksAdapter extends ArrayAdapter<Task> {
         //Get the item in the list
         Task current_task = getItem(position);
 
+        assert current_task != null;
+        boolean is_task_done = current_task.is_done();
+
         //Checkbox for the tasks done
         CheckBox task_checkbox = listItemView.findViewById(R.id.task_done_checkbox);
 
         //Set the checkbox as checked or not, depending of the current state
-        task_checkbox.setChecked(current_task.is_done());
+        task_checkbox.setChecked(is_task_done);
+
+        //Change the color of the text associated with the checkbox is the task is done
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (is_task_done)
+                task_checkbox.setTextColor(getContext().getResources().getColor(R.color.color_task_done, null));
+            else {
+                task_checkbox.setTextColor(getContext().getResources().getColor(R.color.color_task_undone, null));
+            }
+        }
+        else if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
+            if (is_task_done)
+                task_checkbox.setTextColor(getContext().getResources().getColor(R.color.color_task_done));
+            else {
+                task_checkbox.setTextColor(getContext().getResources().getColor(R.color.color_task_undone));
+            }
+        }
+
 
         //Get name of the task
         task_checkbox.setText(current_task.getName());
 
         //Make the checkbox lives
-        listItemView.findViewById(R.id.task_done_checkbox).setOnClickListener(uSatutsListener);
-        listItemView.findViewById(R.id.task_done_checkbox).setOnLongClickListener(dDaskListener);
+        listItemView.findViewById(R.id.task_done_checkbox).setOnClickListener(uStatusListener);
+        listItemView.findViewById(R.id.task_done_checkbox).setOnLongClickListener(dTaskListener);
 
         //Return result
         return listItemView;
